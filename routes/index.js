@@ -4,8 +4,6 @@ const { Friend } = db.models;
 const router = express.Router();
 
 //Retrieves all items from friends and orders by desc
-
-
 router.get('/api/friends', async(req, res, next) => {
   try {
     res.send(await Friend.findAll({order: [['rating', 'desc']]}));
@@ -16,11 +14,8 @@ router.get('/api/friends', async(req, res, next) => {
 
 router.post('/api/friends', async(req, res, next) => {
   try {
-    const { name, rating } = req.body;
-    res.send(await Friend.create({
-      name: name,
-      rating: rating
-    }))
+    const {name} = req.body;
+    res.send(await Friend.create(this.name));
   } catch(err) {
     next(err);
   }

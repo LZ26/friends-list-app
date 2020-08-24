@@ -4,12 +4,13 @@ const app = express();
 const db = require('./db');
 
 
-app.use(require('body-parser').json());
+app.use(require('body-parser').urlencoded({extended: false}));
 app.use('/dist', express.static(path.join(__dirname, "/dist")));
 
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 })
+
 
 app.use('/', require('./routes/index'));
 
